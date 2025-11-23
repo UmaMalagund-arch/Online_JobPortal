@@ -1,5 +1,15 @@
-FROM eclipse-temurin:17-jdk-alpine
+# Use OpenJDK 17
+FROM openjdk:17-jdk-slim
+
+# Add a work directory
 WORKDIR /app
-COPY target/*.jar app.jar
-EXPOSE 8084
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Copy the jar file into the container
+COPY target/*.jar jobportal.jar
+
+# Expose Spring Boot port
+EXPOSE 8080
+
+# Start the application
+ENTRYPOINT ["java", "-jar", "jobportal.jar"]
+
